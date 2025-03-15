@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package(CUDA REQUIRED)
 include_directories("${CUDA_INCLUDE_DIRS}")
-
+include_directories("/root/TensorRT-8.5.1.7/include/")
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
 )
