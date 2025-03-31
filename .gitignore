@@ -30,8 +30,11 @@
 *.exe
 *.out
 *.app
+*.engine
+
 
 build/
 cmake-build-debug/
 .idea/
 .vscode/
+image/

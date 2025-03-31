@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.5)
 project(superpointglue)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_BUILD_TYPE "release")
 add_definitions(-w)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/3rdparty/tensorrtbuffer)
 
 
-find_package(OpenCV 4.2 REQUIRED)
+find_package(OpenCV 4.5 REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(CUDA REQUIRED)
 find_package(yaml-cpp REQUIRED)
@@ -37,10 +38,11 @@ target_link_libraries(${PROJECT_NAME}_lib
   tensorrtbuffer
 )
 
-
+add_executable(feature_matching feature_matching.cpp)
 add_executable(${PROJECT_NAME}_image inference_image.cpp)
 add_executable(${PROJECT_NAME}_sequence inference_sequence.cpp)
 
 link_directories("/root/TensorRT-8.5.1.7/lib/")
 target_link_libraries(${PROJECT_NAME}_image ${PROJECT_NAME}_lib)
 target_link_libraries(${PROJECT_NAME}_sequence  ${PROJECT_NAME}_lib)
+target_link_libraries(feature_matching ${OpenCV_LIBS})
